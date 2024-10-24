@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors"); // Import the cors middleware
 const db = require("./startup/database");
+
 require("dotenv").config();
 
 const app = express();
@@ -60,6 +61,9 @@ app.use(process.env.AUTHOR, publicforumRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/crop", cropRoutes);
 app.use("/api/market-price", MarketPriceRoutes);
+
+const home = require("./routes/home");
+app.use("/home", home);
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
